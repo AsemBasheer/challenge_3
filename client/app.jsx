@@ -27,8 +27,25 @@ class App extends React.Component {
                 "Content-type": "application/json; charset=UTF-8"
             }
         })
-            // .then(response => response.json())
-            // .then(json => console.log(json))
+    }
+
+    reset(){
+            this.setState( {
+                page: "home",
+                name: "",
+                email: "",
+                password: "",
+                addressLine1: "",
+                addressLine2: "",
+                addressCity: "",
+                addressState: "",
+                addressZip: "",
+                phone: "",
+                creditNumber: "",
+                creditExpiry: "",
+                creditCVV: "",
+                billingZip: ""
+            })
     }
 
     render() {
@@ -137,7 +154,7 @@ class App extends React.Component {
                                         </tr>
                                     </tbody>
                                 </table>
-                                <button className="w3-button w3-red" onClick={() => { this.setState({ page: "home" }) }}>Purchase</button>
+                                <button className="w3-button w3-red" onClick={() => {this.reset(), this.setState({ page: "home" }) }}>Purchase</button>
                             </div>
                             :
                             <div className="d-flex justify-content-center align-items-center">

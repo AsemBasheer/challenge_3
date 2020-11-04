@@ -10,15 +10,39 @@ app.get('/app', function (req, res) {
 });
 
 app.post('/form1', function (req, res) {
-    console.log("form1 >>",req.body)
+    console.log("form1 >>", req.body)
+    let form1 = new checkOut1({
+        name: req.body.name,
+        email: req.body.email,
+        password: req.body.password
+    })
+    form1.save()
     res.end()
 });
 app.post('/form2', function (req, res) {
-    console.log("form2 >>",req.body)
+    console.log("form2 >>", req.body)
+    let form2 = new checkOut2({
+        email: req.body.email,
+        addressLine1: req.body.addressLine1,
+        addressLine2: req.body.addressLine2,
+        addressCity: req.body.addressCity,
+        addressState: req.body.addressState,
+        addressZip: req.body.addressZip,
+        phone: req.body.phone,
+    })
+    form2.save()
     res.end()
 });
 app.post('/form3', function (req, res) {
-    console.log("form3 >>",req.body)
+    console.log("form3 >>", req.body)
+    let form3 = new checkOut3({
+        email: req.body.email,
+        creditNumber: req.body.creditNumber,
+        creditExpiry: req.body.creditExpiry,
+        creditCVV: req.body.creditCVV,
+        billingZip: req.body.billingZip,
+    })
+    form3.save()
     res.end()
 });
 
@@ -37,6 +61,7 @@ let nameCOSchema = mongoose.Schema({
     password: String,
 });
 let addressCOSchema = mongoose.Schema({
+    email: String,
     addressLine1: String,
     addressLine2: String,
     addressCity: String,
@@ -45,15 +70,16 @@ let addressCOSchema = mongoose.Schema({
     phone: Number,
 });
 let cSchema = mongoose.Schema({
+    email: String,
     creditNumber: Number,
     creditExpiry: String,
     creditCVV: Number,
     billingZip: String,
 });
 
-let chechOut1 = mongoose.model('chechOut1', nameCOSchema);
-let chechOut2 = mongoose.model('chechOut2', addressCOSchema);
-let chechOut3 = mongoose.model('chechOut3', cSchema);
+let checkOut1 = mongoose.model('checkOut1', nameCOSchema);
+let checkOut2 = mongoose.model('checkOut2', addressCOSchema);
+let checkOut3 = mongoose.model('checkOut3', cSchema);
 
 
 let port = 3000;
